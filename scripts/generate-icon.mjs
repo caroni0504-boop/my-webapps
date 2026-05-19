@@ -1,0 +1,20 @@
+import sharp from 'sharp';
+
+const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 680">
+  <defs>
+    <clipPath id="cl1">
+      <polygon points="0,0 680,0 680,380 0,380"/>
+    </clipPath>
+    <clipPath id="cl2">
+      <polygon points="0,340 680,340 680,680 0,680"/>
+    </clipPath>
+  </defs>
+  <rect x="90" y="90" width="500" height="500" rx="115" fill="#ffffff"/>
+  <polygon points="395,145 240,370 330,370 275,535 450,305 355,305" fill="#A855F7" clip-path="url(#cl1)"/>
+  <polygon points="395,145 240,370 330,370 275,535 450,305 355,305" fill="#FBBF24" clip-path="url(#cl2)"/>
+</svg>`;
+
+const buffer = Buffer.from(svg);
+
+await sharp(buffer).resize(512, 512).png().toFile('public/apple-touch-icon.png');
+console.log('아이콘 생성 완료!');
